@@ -112,6 +112,10 @@ static NSString *const BaseURLString = @"http://shjmg.cn/api/";
     return self.meetingList.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 75;
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -120,11 +124,28 @@ static NSString *const BaseURLString = @"http://shjmg.cn/api/";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
+        UILabel *nLable = [[UILabel alloc] init];
+        nLable.textColor = [UIColor whiteColor];
+        nLable.backgroundColor = [UIColor clearColor];
+        [cell addSubview:nLable];
+        nLable.frame = CGRectMake(10, 10, 200, 30);
+        nLable.tag = 1;
+        
+        UILabel *dLable = [[UILabel alloc] init];
+        dLable.textColor = [UIColor redColor];
+        dLable.backgroundColor = [UIColor clearColor];
+        [cell addSubview:dLable];
+        dLable.frame = CGRectMake(10, 45, 200, 30);
+        dLable.tag = 2;
     }
 
-
+    UILabel *lable = (UILabel*)[cell viewWithTag:1];
     MUMeeting *object = self.meetingList[indexPath.row];
-    cell.textLabel.text = [object location];
+    lable.text = [object location];
+    
+    lable = (UILabel*)[cell viewWithTag:2];
+    lable.text = [object date];
     return cell;
 }
 

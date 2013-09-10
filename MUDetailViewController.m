@@ -108,6 +108,7 @@ static NSString *const BaseURLString = @"http://shjmg.cn/api/";
             [alert show];
             return;
         } else {
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"恭喜"
                                                             message:@"签到成功！"
                                                            delegate:nil
